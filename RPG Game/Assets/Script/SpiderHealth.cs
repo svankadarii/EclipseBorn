@@ -42,5 +42,7 @@ public class SpiderHealth : MonoBehaviour
 
         
         Destroy(gameObject, 2f);
+        XPManager.Instance.AddXP(50);
+        Debug.Log("Enemy Defeated! 50 XP awarded.");
     }
 }

@@ -256,7 +256,8 @@ public class NPCsystem : MonoBehaviour
                 else
                 {
                     // No more lines left
-                    Debug.Log("No more lines. Ending dialogue.");
+                    XPManager.Instance.AddXP(30);
+                    Debug.Log("NPC interacted with! 30 XP awarded.");
                     if (canva != null)
                     {
                         canva.gameObject.SetActive(false);
