@@ -6,6 +6,16 @@ public class WeaponSelectionUI : MonoBehaviour
     public Transform previewPoint;
     private GameObject currentPreview;
 
+    public int SelectedWeaponIndex
+    {
+        get { return WeaponManager.Instance.SelectedWeaponIndex; }
+        set
+        {
+            WeaponManager.Instance.SetSelectedWeapon(value);
+            UpdateWeaponPreview();
+        }
+    }
+
     private void Start()
     {
         LoadSelectedWeapon();
@@ -17,16 +27,6 @@ public class WeaponSelectionUI : MonoBehaviour
         int currentIndex = PlayerPrefs.GetInt("SelectedWeapon", 0);
 
         currentIndex = (currentIndex + 1) % WeaponPrefabs.Length;
-
-        PlayerPrefs.SetInt("SelectedWeapon", currentIndex);
-        UpdateWeaponPreview();
-    }
-
-    public void PreviousWeapon()
-    {
-        int currentIndex = PlayerPrefs.GetInt("SelectedWeapon", 0);
-
-        currentIndex = (currentIndex - 1 + WeaponPrefabs.Length) % WeaponPrefabs.Length;
 
         PlayerPrefs.SetInt("SelectedWeapon", currentIndex);
         UpdateWeaponPreview();
@@ -46,15 +46,15 @@ public class WeaponSelectionUI : MonoBehaviour
         if (currentPreview != null)
         {
             Destroy(currentPreview);
-            currentPreview = null; 
+            currentPreview = null;
         }
 
         currentPreview = Instantiate(WeaponPrefabs[selectedIndex], previewPoint.position + new Vector3(0, 0, 2f), Quaternion.identity);
 
         currentPreview.transform.SetParent(previewPoint, false);
         currentPreview.transform.localPosition = Vector3.zero;
-        currentPreview.transform.localRotation = Quaternion.Euler(0, 135, 0); 
-        currentPreview.transform.localScale = Vector3.one * 1.2f; 
+        currentPreview.transform.localRotation = Quaternion.Euler(0, 135, 0);
+        currentPreview.transform.localScale = Vector3.one * 1.2f;
     }
 
     private void LoadSelectedWeapon()

@@ -6,62 +6,63 @@ public class CharacterSelection : MonoBehaviour
     public Transform previewPoint;
     private GameObject currentPreview;
 
+    public int SelectedcharacterIndex
+    {
+        get { return PlayerManager.Instance.SelectedcharacterIndex; }
+        set
+        {
+            PlayerManager.Instance.SetSelectedcharacter(value);
+            UpdatecharacterPreview();
+        }
+    }
+
     private void Start()
     {
-        ClearPreviewPoint();
-        LoadSelectedCharacter();
-        UpdateCharacterPreview();
+        LoadSelectedcharacter();
+        UpdatecharacterPreview();
     }
 
-    public void NextCharacter()
+    public void Nextcharacter()
     {
-        int currentIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
+        int currentIndex = PlayerPrefs.GetInt("Selectedcharacter", 0);
+
         currentIndex = (currentIndex + 1) % characterPrefabs.Length;
-        PlayerPrefs.SetInt("SelectedCharacter", currentIndex);
-        UpdateCharacterPreview();
+
+        PlayerPrefs.SetInt("Selectedcharacter", currentIndex);
+        UpdatecharacterPreview();
     }
 
-    public void PreviousCharacter()
+    private void UpdatecharacterPreview()
     {
-        int currentIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
-        currentIndex = (currentIndex - 1 + characterPrefabs.Length) % characterPrefabs.Length;
-        PlayerPrefs.SetInt("SelectedCharacter", currentIndex);
-        UpdateCharacterPreview();
-    }
-
-    private void UpdateCharacterPreview()
-    {
-        int selectedIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
+        int selectedIndex = PlayerPrefs.GetInt("Selectedcharacter", 0);
 
         if (selectedIndex < 0 || selectedIndex >= characterPrefabs.Length)
         {
             Debug.LogWarning("Invalid index, resetting to 0");
             selectedIndex = 0;
-            PlayerPrefs.SetInt("SelectedCharacter", 0);
+            PlayerPrefs.SetInt("Selectedcharacter", 0);
         }
 
-        ClearPreviewPoint();
+        if (currentPreview != null)
+        {
+            Destroy(currentPreview);
+            currentPreview = null;
+        }
 
-        currentPreview = Instantiate(characterPrefabs[selectedIndex], previewPoint);
+        currentPreview = Instantiate(characterPrefabs[selectedIndex], previewPoint.position + new Vector3(0, 0, 2f), Quaternion.identity);
+
+        currentPreview.transform.SetParent(previewPoint, false);
         currentPreview.transform.localPosition = Vector3.zero;
         currentPreview.transform.localRotation = Quaternion.Euler(0, 135, 0);
         currentPreview.transform.localScale = Vector3.one * 1.2f;
     }
 
-    private void LoadSelectedCharacter()
+    private void LoadSelectedcharacter()
     {
-        if (!PlayerPrefs.HasKey("SelectedCharacter"))
+        if (!PlayerPrefs.HasKey("Selectedcharacter"))
         {
-            PlayerPrefs.SetInt("SelectedCharacter", 0);
+            PlayerPrefs.SetInt("Selectedcharacter", 0);
         }
-        UpdateCharacterPreview();
-    }
-
-    private void ClearPreviewPoint()
-    {
-        foreach (Transform child in previewPoint)
-        {
-            Destroy(child.gameObject);
-        }
+        UpdatecharacterPreview();
     }
 }

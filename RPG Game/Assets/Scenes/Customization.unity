@@ -2016,7 +2016,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 756002925}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
-        m_MethodName: NextCharacter
+        m_MethodName: Nextcharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
