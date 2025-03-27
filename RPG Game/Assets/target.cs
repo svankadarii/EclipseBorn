@@ -3,7 +3,7 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     public Transform player;               // Drag the player GameObject here
-    public float interactDistance = 6f;    // Increased distance from 3 to 6
+    public float interactDistance = 10f;    // Increased distance from 3 to 6
 
     private Animator animator;
 
@@ -16,11 +16,11 @@ public class DoorController : MonoBehaviour
     {
         float distance = Vector3.Distance(player.position, transform.position);
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (distance <= interactDistance)
             {
-                animator.SetTrigger("doorMotionTrigger");
+                animator.SetTrigger("doorMotion");
             }
         }
     }
