@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public Transform player;               // Drag the player GameObject here
-    public float interactDistance = 10f;    // Increased distance from 3 to 6
 
     private Animator animator;
 
