@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public Transform player;              
-    public float interactDistance = 6f;    
 
     private Animator animator;
 
@@ -16,7 +14,7 @@ public class DoorController : MonoBehaviour
     {
         float distance = Vector3.Distance(player.position, transform.position);
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (distance <= interactDistance)
             {
