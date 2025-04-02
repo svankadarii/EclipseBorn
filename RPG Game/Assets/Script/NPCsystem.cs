@@ -256,7 +256,7 @@ public class NPCsystem : MonoBehaviour
                 else
                 {
                     // No more lines left
-                    XPManager.Instance.AddXP(30);
+                    // XPManager.Instance.AddXP(30);
                     Debug.Log("NPC interacted with! 30 XP awarded.");
                     if (canva != null)
                     {
