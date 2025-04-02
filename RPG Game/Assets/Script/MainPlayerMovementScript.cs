@@ -80,7 +80,11 @@ public class MainPlayerMovementScript : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetBool("IsSprinting", isMoving);
+            animator.SetBool("IsMoving", isMoving);
+            animator.SetBool("IsSprinting", vertical > 0);
+            animator.SetBool("MovingB", vertical < 0);
+            animator.SetBool("MovingL", horizontal > 0);
+            animator.SetBool("MovingR", horizontal < 0);
         }
 
         if (isMoving)
