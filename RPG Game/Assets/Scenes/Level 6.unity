@@ -680,6 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e130477614955f4fb1d14bec27cff90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 538041531}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be370b46ff783544680952a0592eda32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swordCollider: {fileID: 538041535}
   damage: 10
 --- !u!136 &538041535
 CapsuleCollider:
@@ -2541,6 +2543,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9096842329700903041, guid: 16aefa655064a8642a98ef1ba0e6dbc9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 396774920}
+    - targetCorrespondingSourceObject: {fileID: 5117006365398442490, guid: 16aefa655064a8642a98ef1ba0e6dbc9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2111498455}
     - targetCorrespondingSourceObject: {fileID: 4852499580253661793, guid: 16aefa655064a8642a98ef1ba0e6dbc9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1183384462}
@@ -3165,6 +3170,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea4e57f335a6c944b6ac07f36162482, type: 3}
+--- !u!1 &2111498452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5117006365398442490, guid: 16aefa655064a8642a98ef1ba0e6dbc9, type: 3}
+  m_PrefabInstance: {fileID: 1656844638}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2111498455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111498452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e6dd31ea756d3428293c22f6d86331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2117107732
 GameObject:
   m_ObjectHideFlags: 0

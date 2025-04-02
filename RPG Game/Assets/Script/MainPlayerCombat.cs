@@ -4,6 +4,7 @@ public class MainPlayerCombat : MonoBehaviour
 {
     private Animator animator;
     private CharacterController controller;
+    public WeaponContactDetection sword;
 
     private int comboCount = 0;
     private float comboTimer = 0f;
@@ -87,5 +88,14 @@ public class MainPlayerCombat : MonoBehaviour
                 PerformAttack();
             }
         }
+    }
+    public void ActivateSwordHitbox()
+    {
+        sword.StartAttackCollider();
+    }
+
+    public void DeactivateSwordHitbox()
+    {
+        sword.EndAttackCollider();
     }
 }
