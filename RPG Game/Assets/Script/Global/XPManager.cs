@@ -14,14 +14,9 @@ public class XPManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
-        {
             Instance = this;
-            DontDestroyOnLoad(gameObject); 
-        }
         else
-        {
             Destroy(gameObject);
-        }
     }
 
     public void AddXP(int amount)
@@ -35,7 +30,7 @@ public class XPManager : MonoBehaviour
         }
     }
 
-    public void LevelUp()
+    private void LevelUp()
     {
         currentXP -= xpToNextLevel;
         currentLevel++;
