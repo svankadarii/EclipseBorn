@@ -2,29 +2,14 @@ using UnityEngine;
 
 public class WeaponContactDetection : MonoBehaviour
 {
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int damage = 10; // Adjust damage as needed
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+            SpiderHealth enemyHealth = other.GetComponent<SpiderHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(damage);
+            }
     }
-    
-    public void OnWeaponHit(GameObject enemyObject)
-    {
-        
-        if (enemyObject != null)
-        {
-            
-        
-            
-          
-        }
-    }
-    
 }
