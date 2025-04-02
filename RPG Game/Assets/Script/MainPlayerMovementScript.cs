@@ -1,10 +1,7 @@
-
 using UnityEngine;
 
 public class MainPlayerMovementScript : MonoBehaviour
 {
-
- 
     [Header("Movement Settings")]
     public float sprintSpeed = 10f;
     public float horizontalMovementMultiplier = 0.5f;
@@ -25,12 +22,16 @@ public class MainPlayerMovementScript : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        
 
         // Ensure we have a camera
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
         }
+
+        // Adjust starting position to prevent falling through ground
+        transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
 
         // Initially lock the cursor (FPS style)
         Cursor.lockState = CursorLockMode.Locked;
@@ -48,6 +49,10 @@ public class MainPlayerMovementScript : MonoBehaviour
             if (animator != null)
             {
                 animator.SetBool("IsSprinting", false);
+                animator.SetBool("MovingF", false);
+                animator.SetBool("MovingB", false);
+                animator.SetBool("MovingL", false);
+                animator.SetBool("MovingR", false);
             }
 
             // Skip movement logic
@@ -80,7 +85,13 @@ public class MainPlayerMovementScript : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetBool("IsSprinting", isMoving);
+            animator.SetBool("IsMoving", isMoving);
+            
+            // Set directional movement booleans
+            animator.SetBool("IsSprinting", vertical > 0);
+            animator.SetBool("MovingB", vertical < 0);
+            animator.SetBool("MovingL", horizontal > 0);
+            animator.SetBool("MovingR", horizontal < 0);
         }
 
         if (isMoving)
@@ -95,7 +106,7 @@ public class MainPlayerMovementScript : MonoBehaviour
     {
         if (mainCamera == null) return;
 
-        // A simple 3rd-person camera
+        // Basic camera positioning
         Vector3 targetPosition = transform.position
             + transform.forward * -5f
             + Vector3.up * 2f;
@@ -104,6 +115,7 @@ public class MainPlayerMovementScript : MonoBehaviour
         mainCamera.transform.LookAt(transform.position + Vector3.up * 1.5f);
     }
 
+    // Optional: Allow exiting cursor lock
     void OnApplicationFocus(bool hasFocus)
     {
         if (!hasFocus)
@@ -113,4 +125,3 @@ public class MainPlayerMovementScript : MonoBehaviour
         }
     }
 }
-
