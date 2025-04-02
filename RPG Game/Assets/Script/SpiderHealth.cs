@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpiderHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 10;
     private int currentHealth;
     private Animator animator;
 
@@ -11,8 +11,6 @@ public class SpiderHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
-        Thread.Sleep(10000);
-        animator.Play("Death");
     }
 
 
@@ -28,6 +26,7 @@ public class SpiderHealth : MonoBehaviour
     
         if (currentHealth <= 0)
         {
+            animator.SetTrigger("Death");
             Die();
         }
     }
